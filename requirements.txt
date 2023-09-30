@@ -5,7 +5,6 @@ ephem
 datetime
 pytz
 skyfield
-numpy
 Python-IO
 pybase64
 geocoder
