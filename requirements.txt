@@ -13,7 +13,7 @@ python-csv
 folium
 pip
 
-matplotlib==3.7.2
+matplotlib
 numpy==1.25.2
 pandas==2.0.3
 pydantic==2.0.3
