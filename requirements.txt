@@ -12,6 +12,9 @@ Python-IO
 pybase64
 geocoder
 flask
+geos
+shapely
+starplot
 gunicorn
 python-csv
 folium
