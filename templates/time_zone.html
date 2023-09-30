@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Zone Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Time Zone Converter</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="input_time">Input Time:</label>
+                <input type="datetime-local" class="form-control" id="input_time" name="input_time" required value="{{ input_time }}">
+            </div>
+
+            <div class="form-group">
+                <label for="from_timezone">From Timezone:</label>
+                <select class="form-control" id="from_timezone" name="from_timezone">
+                    {% for timezone in timezones %}
+                        <option value="{{ timezone }}" {% if from_timezone == timezone %} selected {% endif %}>{{ timezone }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="to_timezone">To Timezone:</label>
+                <select class="form-control" id="to_timezone" name="to_timezone">
+                    {% for timezone in timezones %}
+                        <option value="{{ timezone }}" {% if to_timezone == timezone %} selected {% endif %}>{{ timezone }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+
+        {% if converted_datetime %}
+            <div class="mt-4">
+                <p>Converted Time: {{ converted_datetime }}</p>
+                <p>Calculated Time Zone: {{ calculated_timezone }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container mt-5">
+        <h2>Importance of Time Zones in Astronomy</h2>
+        <p>Time zones are crucial in astronomy for coordinating observations and data analysis across different locations on Earth. Astronomical events, such as eclipses, transits, and meteor showers, are often time-sensitive and can vary based on a viewer's location. Time zones ensure that astronomers worldwide can accurately record and analyze these events, accounting for Earth's rotation and the differences in local times.</p>
+    </div>
+
+    <div class="container mt-5">
+        <h2>What is a Time Zone?</h2>
+        <p>A time zone is a region of the Earth that has the same standard time. It is determined by the longitudinal position of a location relative to the Prime Meridian (0° longitude). Time zones are typically defined as offsets from Coordinated Universal Time (UTC). As Earth rotates, different parts of the world experience daylight and darkness at different times. Time zones help synchronize activities and events across the globe, considering variations in daylight hours and keeping time consistent.</p>
+    </div>
+
+    <div class="container mt-5">
+        <h2>How Time Zones are Calculated</h2>
+        <p>Time zones are calculated based on the Earth's 360° longitudinal division and the rotation of the planet. The Prime Meridian (0° longitude) serves as the reference point for UTC. Each time zone covers 15 degrees of longitude, resulting in a total of 24 time zones around the world. As one moves east or west from the Prime Meridian, the time advances or retreats by one hour for each 15-degree change in longitude. However, time zone boundaries may be adjusted to accommodate political, geographical, and cultural factors.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

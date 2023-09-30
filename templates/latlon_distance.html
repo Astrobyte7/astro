@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haversine Distance Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+       
+        
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result-label {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate distance between two points on a Earth</h1>
+        <form method="POST">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <label for="lat1">Latitude 1:</label>
+                    <input type="text" id="lat1" name="lat1" value="{{ lat1 if lat1 is not none }}" required>
+                    <label for="lat2">Latitude 2:</label>
+                    <input type="text" id="lat2" name="lat2" value="{{ lat2 if lat2 is not none }}" required>
+                </div>
+                <div class="grid-item">
+                    <label for="lon1">Longitude 1:</label>
+                    <input type="text" id="lon1" name="lon1" value="{{ lon1 if lon1 is not none }}" required>
+                    <label for="lon2">Longitude 2:</label>
+                    <input type="text" id="lon2" name="lon2" value="{{ lon2 if lon2 is not none }}" required>
+                </div>
+            </div>
+            <input type="submit" value="Calculate Distance">
+            <div class="result-label">Distance (km):</div>
+            <input type="text" id="distance" name="distance" value="{{ distance if distance is not none }}" readonly>
+        </form>
+    </div>
+    <div class="container">
+        <h2>Haversine Distance Calculation</h2>
+        <p>The Haversine formula is used to calculate the distance between two points on the surface of a sphere, such as the Earth. It takes into account the latitude and longitude of both points and calculates the shortest distance between them, often referred to as the "as-the-crow-flies" distance.</p>
+        <p>The formula is given by:</p>
+        <pre>
+        a = sin²(Δlat/2) + cos(lat1) * cos(lat2) * sin²(Δlon/2)
+        c = 2 * atan2(√a, √(1-a))
+        distance = R * c
+        </pre>
+        <p>Where:</p>
+        <ul>
+            <li><strong>Δlat</strong> is the difference in latitude between the two points.</li>
+            <li><strong>Δlon</strong> is the difference in longitude between the two points.</li>
+            <li><strong>lat1</strong> and <strong>lat2</strong> are the latitudes of the two points in radians.</li>
+            <li><strong>R</strong> is the radius of the Earth (mean radius = 6,371 km).</li>
+            <li><strong>c</strong> is the distance between the two points along the surface of the sphere.</li>
+        </ul>
+    </div>
+</body>
+</html>
+<br>
+<br>
+{% endblock %}

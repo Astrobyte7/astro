@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planetary Information</title>
+    <!-- Adding Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            font-family: "Times New Roman", sans-serif;
+            background-color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 10px;
+        
+        }
+
+        .result-table {
+            margin-top: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            
+        }
+
+        .result-table th,
+        .result-table td {
+            max-width: Auto
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+        <div class="header">
+            <h1>Objects in Your Sky</h1>
+        </div>
+            <form action="/planets" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="date">Choose a date:</label>
+                        <input type="date" id="date" name="date" value="{{ date_str }}" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="timezone">Choose a timezone:</label>
+                        <select id="timezone" name="timezone" class="form-control">
+                            {% for tz_name, tz in timezones %}
+                                <option value="{{ tz_name }}" {% if tz_name == timezone_str %}selected{% endif %}>{{ tz_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="city">Enter a city:</label>
+                        <input type="text" id="city" name="city" value="{{ city_str }}" class="form-control" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+        </div>
+        {% if results %}
+           
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Planet</th>
+                            <th>Rise Time</th>
+                            <th>Transit Time</th>
+                            <th>Set Time</th>
+                            <th>Phase (%)</th>
+                            <th>Constellation</th>
+                            <th>Magnitude</th>
+                            <th>Distance from Sun (AU)</th>
+                            <th>Distance from Earth (AU)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for planet_name, planet_data in results.items() %}
+                            <tr>
+                                <td class="text-truncate">{{ planet_name.capitalize() }}</td>
+                                <td class="text-truncate">{{ planet_data.rise_time.strftime('%H:%M') }}</td>
+                                <td class="text-truncate">{{ planet_data.transit_time }}</td>
+                                <td class="text-truncate">{{ planet_data.set_time.strftime('%H:%M') }}</td>
+                                <td class="text-truncate">{{ planet_data.phase }}</td>
+                                <td class="text-truncate">{{ planet_data.constellation[1] }}</td>
+                                <td class="text-truncate">{{ planet_data.magnitude }}</td>
+                                <td class="text-truncate">{{ planet_data.distance_sun }}</td>
+                                <td class="text-truncate">{{ planet_data.distance_earth }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <br>
+        <br>
+
+    <div style="margin-left: 20px;">
+        <h4 style="font-weight: bold;">Why does the Sun rise in the east and set in the west?</h4>
+        <p>This phenomenon is due to the Earth's rotation. The Earth rotates on its axis from west to east, causing the Sun, stars, and other celestial objects to appear to rise in the east and set in the west.</p>
+        
+        <h4 style="font-weight: bold;">What is magnitude?</h4>
+        <p>Magnitude is a measure of the brightness of a celestial object. Lower magnitudes correspond to brighter objects, while higher magnitudes correspond to fainter objects. It's a logarithmic scale, so a difference of one magnitude is about 2.5 times in brightness.</p>
+</div>
+
+    <div class="footer">
+        <p>Copyright © 2023 Astronomy Site</p>
+    </div>
+</body>
+</html>
+<br>
+<br>
+
+{% endblock %}
+        
+           

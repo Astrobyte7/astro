@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sunrise, Sunset, and Moon Times for Today</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: white;
+        }
+       
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        label, input, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80%;
+        }
+        input[type="submit"] {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+        }
+        .output-label {
+            font-weight: bold;
+        }
+        .output-value {
+            border: none;
+            background-color: #f2f2f2;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sunrise, Sunset, and Moon Times for Today</h1>
+        <form method="post">
+            <div class="form-row">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" value="{{ date }}" required>
+            </div>
+            <div class="form-row">
+                <label for="city">Enter City:</label>
+                <input type="text" id="city" name="city" value="{{ city }}" required>
+            </div>
+            <div class="form-row">
+                <label for="timezone">Select Timezone:</label>
+                <select name="timezone" id="timezone">
+                    {% for timezone, abbreviation in time_zones.items() %}
+                        <option value="{{ timezone }}" {% if selected_timezone == timezone %}selected{% endif %}>{{ abbreviation }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Calculate">
+            </div>
+            <div class="form-row">
+                <label class="output-label" for="sunrise">Sunrise:</label>
+                <input class="output-value" type="text" id="sunrise" name="sunrise" value="{{ sunrise }}" readonly>
+                <label class="output-label" for="local_noon">Local noon:</label>
+                <input class="output-value" type="text" id="local_noon" name="local_noon" value="{{ local_noon }}" readonly>
+            </div>
+            <div class="form-row">
+                <label class="output-label" for="sunset">Sunset:</label>
+                <input class="output-value" type="text" id="sunset" name="sunset" value="{{ sunset }}" readonly>
+                <label class="output-label" for="moonrise">Moonrise:</label>
+                <input class="output-value" type="text" id="moonrise" name="moonrise" value="{{ moonrise }}" readonly>
+            </div>
+            <div class="form-row">
+                <label class="output-label" for="moon_transit_time">Moon transit:</label>
+                <input class="output-value" type="text" id="moon_transit_time" name="moon_transit_time" value="{{ moon_transit_time }}" readonly>
+                <label class="output-label" for="moonset">Moonset:</label>
+                <input class="output-value" type="text" id="moonset" name="moonset" value="{{ moonset }}" readonly>
+            </div>
+            <div class="form-row">
+                <label class="output-label" for="moon_phase">Moon phase:</label>
+                <input class="output-value" type="text" id="moon_phase" name="moon_phase" value="{{ moon_phase }}" readonly>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<br>
+<br>
+{% endblock %}

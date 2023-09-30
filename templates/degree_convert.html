@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Degrees to Hours, Minutes, Seconds Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .explanation {
+            margin-top: 30px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .result {
+            margin-top: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Degrees to Hours, Minutes, Seconds Converter</h1>
+        
+        <form method="post">
+            <div class="form-group">
+                <label for="degrees" class="form-label">Enter degrees:</label>
+                <input type="number" step="any" class="form-control" name="degrees" value="{{ degrees_value }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+        
+        {% if result %}
+        <div class="result">
+            <h2>Result:</h2>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+        
+        <div class="explanation">
+            <h2>Explanation:</h2>
+            <p>{{ explanation }}</p>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

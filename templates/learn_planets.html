@@ -1,0 +1,218 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to the Solar System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+        
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #444;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .solar-bg {
+            background-image: url('solar_system_background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .planet {
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .planet h2 {
+            color: #007BFF;
+            font-size: 24px;
+            text-align: center; /* Center-align planet names */
+        }
+
+        .planet p {
+            font-size: 16px;
+            list-style-type: disc; /* Add bullets to definitions */
+            margin-left: 20px; /* Adjust the margin for the bullets */
+        }
+
+        .planet img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            width: 250px; /* Set the desired width */
+            height: 250px; /* Set the desired height */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Planets in Our Solar System</h1>
+    </header>
+    <main>
+        <h2>Introduction</h2>
+        <p>Planets are celestial objects that orbit stars, and in our solar system, they primarily orbit the Sun. Planets are characterized by several key features:</p>
+        <ul>
+            <li><strong>Orbital Motion:</strong> Planets follow an elliptical or nearly circular path as they revolve around a star, such as the Sun. This motion is governed by the gravitational force between the planet and the star.</li>
+            <li><strong>Spherical Shape:</strong> Planets are generally spherical in shape due to the force of gravity pulling their matter inward. This characteristic distinguishes them from smaller celestial bodies like asteroids and comets, which often have irregular shapes.</li>
+            <li><strong>Cleared Their Orbit:</strong> Planets have cleared their orbital paths of other debris and objects, meaning they have sufficient mass and gravitational influence to dominate their orbits and prevent other objects from sharing the same path.</li>
+        </ul>
+
+        <h2>🌍Types of Planets</h2>
+        <p>In our solar system, there are two main categories of planets:</p>
+        <h3>Terrestrial Planets (Inner Planets)</h3>
+        <p>These planets are called terrestrial because they are similar in composition to Earth, primarily composed of rocks and metals. They are located closer to the Sun than the gas giants.</p>
+        <ul>
+            <li><strong>Mercury:</strong> The closest planet to the Sun, with a very thin atmosphere.</li>
+            <li><strong>Venus:</strong> Known for its thick, toxic atmosphere and extreme surface temperatures.</li>
+            <li><strong>Earth:</strong> Our home planet, unique in its ability to support life, with a diverse ecosystem and moderate temperatures.</li>
+            <li><strong>Mars:</strong> Often referred to as the "Red Planet," known for its thin atmosphere and potential for future human exploration.</li>
+        </ul>
+
+        <h3>🪐Gas Giant Planets (Outer Planets)</h3>
+        <p>Gas giants are significantly larger than terrestrial planets and are composed mostly of hydrogen and helium, similar to the composition of the Sun.</p>
+        <ul>
+            <li><strong>Jupiter:</strong> The largest planet in our solar system, known for its massive size, strong magnetic field, and numerous moons.</li>
+            <li><strong>Saturn:</strong> Known for its spectacular ring system and a diverse array of moons.</li>
+            <li><strong>Uranus:</strong> A planet that rotates on its side and has a unique bluish color due to the presence of methane in its atmosphere.</li>
+            <li><strong>Neptune:</strong> The farthest known planet in our solar system, with a dynamic atmosphere and a system of rings and moons.</li>
+        </ul>
+
+        
+        <p>It's worth noting that there are other celestial objects in our solar system, such as dwarf planets (e.g., Pluto), which are similar in some ways to planets but have not "cleared their orbits" according to the current definition established by the International Astronomical Union (IAU). Additionally, there are exoplanets, which are planets that orbit stars outside our solar system and come in a wide variety of types and sizes.</p>
+
+        <div class="planet">
+            <h2>Mercury</h2>
+            <img src="https://i.ibb.co/RHWZJVb/mercury2.png" alt="Mercury Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Mercury is the closest planet to the Sun, situated at an average distance of about 57.9 million kilometers (36 million miles).</p>
+            <p><strong>Size:</strong> It is the smallest planet in the solar system, with a diameter of approximately 4,880 kilometers (3,032 miles).</p>
+            <p><strong>Surface:</strong> Mercury's surface is heavily cratered due to countless impacts from space debris. It also has extensive plains and cliffs.</p>
+            <p><strong>Temperature Extremes:</strong> Mercury experiences extreme temperature variations, with scorching daytime highs of around 430°C (800°F) and frigid nighttime lows of -180°C (-290°F).</p>
+            <p><strong>Lack of Atmosphere:</strong> Mercury has a very thin atmosphere, primarily composed of trace amounts of helium and hydrogen, making it unable to support human life.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Venus</h2>
+            <img src="https://i.ibb.co/4gRRnNr/venus.png" alt="Venus Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Venus is the second planet from the Sun, located at an average distance of about 108.2 million kilometers (67.2 million miles).</p>
+            <p><strong>Size:</strong> It is similar in size and composition to Earth, often referred to as Earth's "sister planet."</p>
+            <p><strong>Atmosphere:</strong> Venus has a thick and toxic atmosphere primarily composed of carbon dioxide, with clouds of sulfuric acid. This results in a runaway greenhouse effect, making it the hottest planet in our solar system.</p>
+            <p><strong>Surface:</strong> Venus's surface is characterized by vast volcanic plains, highland regions, and large shield volcanoes.</p>
+            <p><strong>Pressure:</strong> The atmospheric pressure on Venus is about 92 times greater than Earth's, equivalent to the pressure found 900 meters (3,000 feet) underwater.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Earth</h2>
+            <img src="https://i.ibb.co/ygs3zGp/earth.png" alt="Earth Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Earth is the third planet from the Sun, situated at an average distance of about 149.6 million kilometers (93 million miles).</p>
+            <p><strong>Size:</strong> It is the only planet known to support life, with a diameter of approximately 12,742 kilometers (7,918 miles).</p>
+            <p><strong>Atmosphere:</strong> Earth's atmosphere is predominantly composed of nitrogen (about 78%) and oxygen (about 21%), creating the conditions necessary for life.</p>
+            <p><strong>Surface:</strong> Earth's surface is incredibly diverse, featuring oceans, continents, mountains, deserts, forests, and various ecosystems.</p>
+            <p><strong>Moon:</strong> Earth has one natural satellite, the Moon, which plays a role in ocean tides and has been a target for human exploration.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Mars</h2>
+            <img src="https://i.ibb.co/6vH4Kst/mars.png" alt="Mars Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Mars is the fourth planet from the Sun, at an average distance of about 227.9 million kilometers (141.6 million miles).</p>
+            <p><strong>Nickname:</strong> Often called the "Red Planet" due to its reddish appearance, caused by iron oxide (rust) on its surface.</p>
+            <p><strong>Surface:</strong> Mars boasts diverse geological features, including the largest volcano in the solar system, Olympus Mons, and the deep Valles Marineris canyon system.</p>
+            <p><strong>Atmosphere:</strong> It has a thin atmosphere primarily composed of carbon dioxide, with traces of nitrogen and argon.</p>
+            <p><strong>Potential for Life:</strong> Mars is a prime target for the search for past or present life, with evidence of ancient water flows and the possibility of subsurface water.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Jupiter</h2>
+            <img src="https://i.ibb.co/WB47H6b/jupiter.png" alt="Jupiter Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Jupiter is the fifth planet from the Sun, positioned at an average distance of about 778.3 million kilometers (483.8 million miles).</p>
+            <p><strong>Size:</strong> It is the largest planet in the solar system, with a diameter of approximately 139,822 kilometers (86,881 miles).</p>
+            <p><strong>Atmosphere:</strong> Jupiter has a massive, thick atmosphere primarily composed of hydrogen and helium. It features cloud bands, including the famous Great Red Spot, a massive storm.</p>
+            <p><strong>Rings:</strong> Jupiter has a faint ring system consisting of fine particles.</p>
+            <p><strong>Moons:</strong> It has over 80 known moons, including Ganymede, the largest moon in the solar system.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Saturn</h2>
+            <img src="https://i.ibb.co/93DH9XY/saturn2.png" alt="Saturn Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Saturn is the sixth planet from the Sun, at an average distance of about 1.4 billion kilometers (886 million miles).</p>
+            <p><strong>Rings:</strong> Saturn is renowned for its dazzling ring system, composed of countless icy ringlets and particles.</p>
+            <p><strong>Atmosphere:</strong> It has a thick atmosphere primarily composed of hydrogen and helium, with traces of methane.</p>
+            <p><strong>Moons:</strong> Saturn has over 80 known moons, with Titan being the most notable due to its thick nitrogen-rich atmosphere and liquid methane lakes.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Uranus</h2>
+            <img src="https://i.ibb.co/j6S5F4K/uranus3.png" alt="Uranus Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Uranus is the seventh planet from the Sun, located at an average distance of about 2.9 billion kilometers (1.8 billion miles).</p>
+            <p><strong>Unique Tilt:</strong> Uranus has a unique feature—its axis of rotation is tilted almost perpendicular to its orbit around the Sun, causing extreme seasonal variations.</p>
+            <p><strong>Atmosphere:</strong> It has a hydrogen and helium-rich atmosphere with traces of methane, which gives it a blue-green color.</p>
+            <p><strong>Moons:</strong> Uranus has over 20 known moons, with Titania and Oberon being the largest.</p>
+        </div>
+    
+        <div class="planet">
+            <h2>Neptune</h2>
+            <img src="https://i.ibb.co/tqx0BgQ/neptune.png" alt="Neptune Image" width="250" height="250">
+            <p><strong>Distance from the Sun:</strong> Neptune is the eighth and farthest planet from the Sun, at an average distance of about 4.5 billion kilometers (2.8 billion miles).</p>
+            <p><strong>Atmosphere:</strong> It has a deep blue atmosphere primarily composed of hydrogen, helium, and methane. Methane gives Neptune its striking blue color.</p>
+            <p><strong>Great Dark Spot:</strong> Similar to Jupiter's Great Red Spot, Neptune has a Great Dark Spot, a massive storm system.</p>
+            <p><strong>Moons:</strong> Neptune has over 14 known moons, including Triton, known for its retrograde orbit and geysers of nitrogen gas.</p>
+        </div>
+    </body>
+    </html>
+    
+    </main>
+</body>
+</html>
+
+<br>
+<br>
+
+
+
+{% endblock %}
+
+

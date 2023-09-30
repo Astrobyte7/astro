@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0px;
+            background-color: white;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h2 {
+            background-color: #f2f2f2;
+            padding: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 16px;
+            margin-top: 20px;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Planetary Conjunction</h1>
+        <form method="POST">
+            <label for="year"><strong>Enter Year:</strong></label>
+            <input type="text" name="year" id="year" value="{{ year }}">
+            <button type="submit">Find</button>
+        </form>
+        <hr>
+        <h2>Year rang from 1000 to 3000 </h2>
+        {% if headings %}
+        <table>
+            <tr>
+                {% for heading in headings %}
+                <th>{{ heading }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        <div class="explanation">
+            <h2>What is Planetary Conjunction?</h2>
+            <p>A planetary conjunction occurs when two or more planets appear close to each other in the sky as observed from Earth...</p>
+
+            <h2>Types of Planetary Conjunctions</h2>
+            <p><strong>1. Great Conjunction:</strong> This is a conjunction involving the two gas giants, Jupiter and Saturn...</p>
+            <p><strong>2. Inferior Conjunction:</strong> This type involves inner planets (Mercury and Venus) and the Sun...</p>
+            <p><strong>3. Superior Conjunction:</strong> Similar to the inferior conjunction, superior conjunctions involve inner planets (Mercury and Venus) and the Sun...</p>
+            <p><strong>4. Triple Conjunction:</strong> This occurs when three planets form a series of conjunctions with each other over a short period...</p>
+            <p><strong>5. Planetary Line-Up:</strong> While not a formal type of conjunction, a planetary line-up involves several planets appearing roughly aligned along the same path in the sky...</p>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

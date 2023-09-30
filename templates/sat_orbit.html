@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Satellite Time Period Calculator</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            
+            padding: 5px;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        p {
+            text-align: left;
+            line-height: 1.4;
+            margin-top: 15px;
+        }
+        .result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate Satellite Time Period </h1>
+        <form method="POST">
+            <label for="altitude">Enter Altitude (in kilometers):</label> 
+            <br>
+            <br>
+            <input type="text" name="altitude" id="altitude" required {% if altitude %}value="{{ altitude_km  }}"{% endif %}><br> 
+            <br>
+            <input type="submit" value="Calculate">
+        </form>
+        <div class="result">
+            {% if result %}
+            <p>The orbital period of a satellite is: {{ result }}  hours.</p>
+        
+            {% endif %}
+        </div>
+
+        <img src="https://i.ibb.co/7K4JV7G/orbit2.png" alt="An example image" width="360" height="300">
+
+        <div class="explanation">
+            <p><strong>Explanation:</strong></p>
+            <p>The orbital period of a satellite is calculated using Kepler's Third Law of Planetary Motion:</p>
+            <p>\[ T = 2\pi\sqrt{\frac{a^3}{GM}} \]</p>
+            <p>Where:</p>
+            <ul>
+                <li>\( T \) is the orbital period (in seconds).</li>
+                <li>\( a \) is the semi-major axis (radius) of the orbit (in meters).</li>
+                <li>\( G \) is the gravitational constant (\(6.67430 \times 10^{-11}\, \text{m}^3/\text{kg}\, \text{s}^2\)).</li>
+                <li>\( M \) is the mass of the Earth (\(5.972 \times 10^{24}\, \text{kg}\)).</li>
+            </ul>
+            <p>By converting altitude to meters and using the formula, we can calculate the orbital period in seconds. To obtain hours, we divide the result by 3600 (the number of seconds in an hour).</p>
+        </div>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <script>
+        // JavaScript to maintain the input value
+        window.onload = function() {
+            var altitudeInput = document.getElementById("altitude");
+            var storedAltitude = localStorage.getItem("altitude");
+            
+            if (storedAltitude) {
+                altitudeInput.value = storedAltitude;
+            }
+
+            altitudeInput.addEventListener("input", function() {
+                localStorage.setItem("altitude", altitudeInput.value);
+            });
+        }
+    </script>
+</body>
+</html>
+
+{% endblock %}

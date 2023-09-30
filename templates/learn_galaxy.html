@@ -1,0 +1,110 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxies and Their Formation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            
+        
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>What Are Galaxies, and How Do They Form?</h1>
+    </header>
+    <div class="container">
+        <img class="centered-image" src="https://i.ibb.co/HHDZwT3/galaxyblog.png" alt="Galaxy Image">
+
+        <h2>What is a galaxy?</h2>
+        <p>To begin with, we must emphasize that a galaxy is a set of various celestial bodies such as stars, planets, comets, nebulae, black holes, etc.</p>
+        <p>All these components are linked together by the force of gravity, which prevents galaxies from "evaporating" dynamically, that is, the objects that compose it from shooting out into space. On the other hand, the permanent movement of stars and gas (that is, their kinetic energy) prevents all matter from collapsing towards the system's center since it remains in constant motion.</p>
+
+        <h2>What's inside galaxies?</h2>
+        <p>As we mentioned, a galaxy contains many things inside; consider that at this moment, we are all inside a galaxy, the Milky Way, which contains approximately 100,000 million stars, of which the Sun is only one of them.</p>
+        <p>Each star has, on average, a planet, which means that there are billions of planets in our galaxy, and there is likely life like ours in some of them.</p>
+        <p>In addition to the stars and planets, obviously in a galaxy are all the elements we could find in a solar system, such as Asteroids, Comets, and Natural Satellites.</p>
+        <p>However, we currently know that the main component of a galaxy is not the stars nor the cosmic dust that surrounds the interstellar medium, but rather a material that, until now, we still do not know what it is, dark matter.</p>
+
+        <h2>Dark matter</h2>
+        <p>Dark matter is not a type of black matter; instead, it is a type of matter that we know exists, but we do not know exactly what it is, since we cannot see or measure it in any way.</p>
+        <p>But if we can't see or measure it as we know it exists? We know that because when we measure the speed of rotation of the stars of a spiral galaxy like the Milky Way, you are continually presenting a much more speed than they should have if we only consider the visible matter, in other words, the speed of rotation of the stars in a spiral galaxy point to the fact that there must be much more matter than we can see.</p>
+        <p>That's how we realized that most of a galaxy is a type of matter that we can't see, but we know it is there.</p>
+
+        <h2>How many types of galaxies are there?</h2>
+        <p>When we talk about galaxies, we mean a set of bodies that can be classified depending on their size and shape, but in general, 5 types of principal galaxies can be differentiated.</p>
+        <ol>
+            <li><strong>Elliptical galaxies:</strong> As the name implies, these are ellipse-shaped galaxies. Their appearance shows little structure, and, typically, they have relatively little interstellar matter. Consequently, these galaxies have a small number of open star clusters, and the star formation rate is low.</li>
+            <li><strong>Spiral galaxies:</strong> Spiral galaxies are the most popular and are shaped like rotating disks of stars and interstellar matter, with a central bulge, also called the galactic core, composed mainly of older stars supermassive black holes.
+                <ul>
+                    <li><strong>Spiral star formation galaxy:</strong> These are galaxies that have developed uniform spiral arms made up of stars and stellar birth regions where thermonuclear events occur that give rise to new stars; the Milky Way is of this type of galaxy.</li>
+                    <li><strong>Barred spiral galaxy (SBA-c):</strong> This is a spiral galaxy with a central band of stars.</li>
+                    <li><strong>Intermediate Spiral Galaxy (SABa-c):</strong> It is a type of galaxy that, according to its shape, is classified between a spiral galaxy and a barred spiral galaxy.</li>
+                </ul>
+            </li>
+            <li><strong>Lenticular galaxies:</strong> These constitute a transition group between elliptical galaxies and spirals and are divided into three subgroups: SO1, SO2, and SO3. Lenticular galaxies possess a disk resembling a bulging central condensation enveloped in an extensive cloud of cosmic dust, giving it the appearance of a lens.</li>
+            <li><strong>Irregular galaxies:</strong> An irregular galaxy is a galaxy that does not fit into any classification of galaxies in the Hubble sequence. They are galaxies without a spiral or elliptical shape. The closest galaxy to the Milky Way is of this type, and it is the Can Major Dwarf Galaxy that is 28,000 light-years away.</li>
+            <li><strong>Active Galaxies:</strong> Active galaxies release large amounts of energy or matter into the interstellar medium through processes unrelated to normal stellar processes. Approximately 10% of galaxies can be classified as active galaxies. Most of the energy emitted by active galaxies comes from a small, bright region of the galactic core.
+                <ul>
+                    <li>Seyfert Galaxies</li>
+                    <li>Starburst Galaxies</li>
+                    <li>Radio galaxies</li>
+                    <li>Quasars</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>Evolution of galaxies:</h2>
+        <p>The exact process by which galaxies form is still an open question in astrophysics. One of the theories, called the SZ model (by Searle and Zinn), suggests that small structures resembling globular clusters are formed first. Then several of these objects come together to form a small galaxy called a proto galaxy. Over time the small protogalaxies reach a size large enough to attract more stars and keep them all coupled with their gravitational pull force, to form a galaxy.</p>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 0px;
+            
+            padding: 20px;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+            height: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .eclipse-section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .explanation {
+            margin-top: 30px;
+        }
+
+
+        h5 {
+            text-align: center;
+            font-size: 150%;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Solar and Lunar Eclipse</h1>
+         <p>Enter date from 1000 to 3000 years</p>
+        
+        <form method="POST">
+            <label for="year">Enter Year:</label>
+            <input type="number" id="year" name="year" value="{{ year }}" required>
+            <button type="submit">Submit</button>
+        </form>
+        
+        {% if year %}
+    <div class="center-align">
+        <h5>☀️ Solar Eclipses in {{ year }} 🌑</h5>
+            <div class="eclipse-section">
+                <ul>
+                    {% for eclipse in solar_eclipses %}
+                        <li>{{ eclipse['Date'] }} - {{ eclipse['Eclipse Type'] }} at {{ eclipse['Eclipse Time UTC'] }} UTC</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <h5>🌕Lunar Eclipses in {{ year }}🌎</h5>
+            <div class="eclipse-section">
+                <ul>
+                    {% for eclipse in lunar_eclipses %}
+                        <li>{{ eclipse['Date'] }} - {{ eclipse['Eclipse Type'] }} at {{ eclipse['Eclipse Time UTC'] }} UTC</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <div class="explanation">
+            <h2>☀️Solar Eclipse </h2>
+            <p>A solar eclipse occurs when the Moon passes between the Sun and the Earth, blocking all or a portion of the Sun's light. There are three main types of solar eclipses:</p>
+            <ul>
+                <li><strong>Total Solar Eclipse:</strong> The Sun is completely obscured by the Moon.</li>
+                <li><strong>Partial Solar Eclipse:</strong> Only a portion of the Sun is covered by the Moon.</li>
+                <li><strong>Annular Solar Eclipse:</strong> The Moon covers the center of the Sun, leaving a ring (annulus) of the Sun's disk visible.</li>
+            </ul>
+            
+            <h2>🌑Lunar Eclipse</h2>
+            <p>A lunar eclipse occurs when the Earth passes between the Sun and the Moon, causing the Earth's shadow to be cast on the Moon. There are three main types of lunar eclipses:</p>
+            <ul>
+                <li><strong>Total Lunar Eclipse:</strong> The entire Moon is in Earth's shadow, giving it a reddish hue during the event (known as a "blood moon").</li>
+                <li><strong>Partial Lunar Eclipse:</strong> Only a portion of the Moon enters Earth's shadow.</li>
+                <li><strong>Penumbral Lunar Eclipse:</strong> The outer shadow of the Earth (the penumbra) falls on the Moon's surface, causing a subtle shading effect.</li>
+            </ul>
+        </div>
+
+        {% endblock %}
+        

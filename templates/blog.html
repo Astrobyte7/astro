@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Blog List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px; /* Increase the max-width to make the container wider */
+            margin: 0 auto;
+            padding: 0px;
+        }
+
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .blog-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .blog-item img {
+            max-width: 50%;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .subheading {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .author {
+            font-weight: bold;
+        }
+
+        .highlight {
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog List</h1>
+        <div class="blog-list">
+            <div class="blog-item">
+                <img src="https://i.ibb.co/18Bxw2V/me-h-Copy-1.png" alt="Blog 1 Image" width="200" height="150">  
+                <div class="content">
+                    <a href="{{ url_for('blog_henlay') }}">
+                        <Exploring style="font-weight: bold; font-size: 20px;">My Celestial Journey:Exploring Hanle's Dark Sky Reserve and Observatory
+                    </a>
+                    <p class="subheading">17 September 2023 </p>
+                    <div class="author">Author: Sachin Chauhan</div>
+                </div>
+            </div>
+            <div class="blog-item">
+                <img src="https://i.ibb.co/RzfCYFh/Astrobiology.png" alt="Blog 2 Image" width="200" height="150">
+                <div class="content">
+                    <a href="{{ url_for('blog_henlay') }}">
+                        <The style="font-weight: bold; font-size: 20px;">Astrobiology: The Quest for Life Beyond Earth
+                    </a>
+                    <p class="subheading">25 July 2023</p>
+                    <div class="author">Author: Sachin Chauhan</div>
+                </div>
+            </div>
+            <div class="blog-item">
+                <img src="https://i.ibb.co/hcGZt3T/carl2.jpg" alt="Blog 3 Image" width="200" height="150">
+                <div class="content">
+                    <a href="{{ url_for('blog_carl') }}">
+                        <Inspired style="font-weight: bold; font-size: 20px;">My Cosmic Journey: Inspired by Carl Sagan
+                    </a>
+                    <p class="subheading">15 January 2023</p>
+                    <div class="author">Author: Sachin Chauhan</div>
+                </div>
+            </div>
+            <!-- Add more blog items as needed -->
+        </div>
+    </div>
+</body>
+</html>
+<br>
+<br>
+
+{% endblock %}

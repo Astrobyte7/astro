@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Venus Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            margin-left: 10px; /* Reduce the left-side margin */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-item {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Venus Information</h1>
+    <div class="container">
+        <div class="form">
+            <div class="form-item">
+                <h2>Enter the details</h2>
+                <form method="POST">
+                    <label for="lat">Latitude:</label>
+                    <input type="text" id="lat" name="lat" placeholder="Enter latitude" value="{{ form_values['lat'] }}"><br>
+
+                    <label for="lon">Longitude:</label>
+                    <input type="text" id="lon" name="lon" placeholder="Enter longitude" value="{{ form_values['lon'] }}"><br>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" value="{{ form_values['date'] }}"><br>
+
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time" value="{{ form_values['time'] }}"><br>
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+        {% if result %}
+        <div class="results">
+            <h2>Venus Information</h2>
+            <label for="input_time">Input Time:</label>
+            <input type="text" id="input_time" name="input_time" value="{{ result.input_time }}" readonly><br>
+
+            <label for="next_rising_ist">Next Rising IST:</label>
+            <input type="text" id="next_rising_ist" name="next_rising_ist" value="{{ result.next_rising_ist }}" readonly><br>
+
+            <label for="next_setting_ist">Next Setting IST:</label>
+            <input type="text" id="next_setting_ist" name="next_setting_ist" value="{{ result.next_setting_ist }}" readonly><br>
+
+            <label for="RA">RA:</label>
+            <input type="text" id="RA" name="RA" value="{{ result.RA[0] }} hours, {{ result.RA[1] }} minutes, {{ "%.3f"|format(result.RA[2]) }} seconds" readonly><br>
+
+            <label for="DEC">DEC:</label>
+            <input type="text" id="DEC" name="DEC" value="{{ result.DEC[0] }} degrees, {{ result.DEC[1] }} minutes, {{ "%.3f"|format(result.DEC[2]) }} seconds" readonly><br>
+
+            <label for="Constellation">Constellation:</label>
+            <input type="text" id="Constellation" name="Constellation" value="{{ result.Constellation }}" readonly><br>
+
+            <label for="Distance_from_Earth">Distance from Earth (AU):</label>
+            <input type="text" id="Distance_from_Earth" name="Distance_from_Earth" value="{{ result['Distance from Earth'] }}" readonly><br>
+
+            <label for="Distance_from_Sun">Distance from Sun (AU):</label>
+            <input type="text" id="Distance_from_Sun" name="Distance_from_Sun" value="{{ result['Distance from Sun'] }}" readonly><br>
+
+            <label for="Magnitude">Magnitude:</label>
+            <input type="text" id="Magnitude" name="Magnitude" value="{{ result.Magnitude }}" readonly><br>
+
+            <label for="Solar_Elongation">Solar Elongation (degrees):</label>
+            <input type="text" id="Solar_Elongation" name="Solar_Elongation" value="{{ "%.3f"|format(result['Solar Elongation (degrees)']) }}" readonly><br>
+        </div>
+        {% else %}
+        <!-- Placeholder for result text before submitting the form -->
+        <div class="results">
+            <h2>Venus Information</h2>
+            <label for="input_time">Input Time:</label>
+            <input type="text" id="input_time" name="input_time" value="" readonly><br>
+
+            <label for="next_rising_ist">Next Rising IST:</label>
+            <input type="text" id="next_rising_ist" name="next_rising_ist" value="" readonly><br>
+
+            <label for="next_setting_ist">Next Setting IST:</label>
+            <input type="text" id="next_setting_ist" name="next_setting_ist" value="" readonly><br>
+
+            <label for="RA">RA:</label>
+            <input type="text" id="RA" name="RA" value="" readonly><br>
+
+            <label for="DEC">DEC:</label>
+            <input type="text" id="DEC" name="DEC" value="" readonly><br>
+
+            <label for="Constellation">Constellation:</label>
+            <input type="text" id="Constellation" name="Constellation" value="" readonly><br>
+
+            <label for="Distance_from_Earth">Distance from Earth (AU):</label>
+            <input type="text" id="Distance_from_Earth" name="Distance_from_Earth" value="" readonly><br>
+
+            <label for="Distance_from_Sun">Distance from Sun (AU):</label>
+            <input type="text" id="Distance_from_Sun" name="Distance_from_Sun" value="" readonly><br>
+
+            <label for="Magnitude">Magnitude:</label>
+            <input type="text" id="Magnitude" name="Magnitude" value="" readonly><br>
+
+            <label for="Solar_Elongation">Solar Elongation (degrees):</label>
+            <input type="text" id="Solar_Elongation" name="Solar_Elongation" value="" readonly><br>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        body {
+            margin: 0;
+            font-family: "Times New Roman", sans-serif;
+            background-color: white;
+            
+        }
+        
+        img {
+            float: left;
+        }
+
+        p.c {
+            font-style: Times New Roman;
+            font-weight: bold;
+            
+        }
+
+        .main-heading {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #333333;
+            display: flex;
+            align-items: left;
+        }
+        .telescope-emoji {
+            font-size: 36px;
+            margin-right: 10px;
+        }
+        .subheading {
+            font-size: 24px;
+            color: #007bff;
+        }
+        .subheading a {
+            text-decoration: none;
+            color: #007bff;  
+        }
+        .menu-link {
+            text-decoration: none; /* Remove underline from links */
+            color: #3366cc; /* Set the link color */
+            font-weight: bold;
+        }
+
+        .menu-link:hover {
+            color: #ff9900; /* Change link color on hover */
+        }
+
+        .menu-link:visited {
+            color: #3366cc; /* Set visited link color */
+        }
+
+        .button.button6 {
+            width: 390px; /* Set a fixed width for all buttons (adjust as needed) */
+            height: 65px; 
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+            padding: 20px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-color: blck;
+          }
+          
+    </style>
+</head>
+</body>
+</head>
+<body>
+    <h1 style="text-align:center">Navigate the Cosmos with Precision</h1>
+    <p style="text-align:center">All the celestial calculations uses NASA data for more accuracy</p> <br>
+</body>
+</html>
+<div class="row">
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('planets') }}">
+                <img class="about-image3" src="https://i.ibb.co/bBSwFy8/skyobject.png" alt="solar-system">
+            </a>
+            <h3><a href="{{ url_for('planets') }}" class="custom-link">Objects in your sky</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('moon_phase') }}">          
+                <img class="about-image3" src="https://i.ibb.co/M27WYBM/moon-phase.png" alt="solar-system">
+            </a>
+            <h3><a href="{{ url_for('moon_phase') }}" class="custom-link">Lunar Phase & Calendar</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('satellite_track') }}">          
+                <img class="about-image3" src="https://i.ibb.co/0Qn9jt6/satellite.png" alt="solar-system">
+            </a>
+            <h3><a href="{{ url_for('satellite_track')}}" class="custom-link">Track Satellite Above you</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{  url_for('season')  }}">          
+                <img class="about-image3" src="https://i.ibb.co/r3RTjXV/Equinox.png" alt="solar-system">
+            </a>
+            <h3><a href="{{  url_for('season') }}" class="custom-link">Seasons and Equinox</a></h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <div class="text-container">
+            <a href="{{  url_for('sunrise')  }}">          
+                <img class="about-image3" src="https://i.ibb.co/wWmBqzR/6-modified.png" alt="solar-system">
+            </a>
+            <h3><a href="{{  url_for('sunrise') }}" class="custom-link">Sun Moon Rise & Set</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('lunar') }}">
+                <img class="about-image3" src="https://i.ibb.co/FbLzRr6/lunar.png" alt="solar-system">
+            </a>
+            <h3><a href="{{ url_for('lunar') }}" class="custom-link">Solar & Lunar eclipse</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('twilight') }}">
+                <img class="about-image3" src="https://i.ibb.co/B3hqW5k/Eqnx.png"  alt="solar-system">
+            </a>
+            <h3><a href="{{url_for('twilight') }}" class="custom-link">Twilights, Hours of Darkness</a></h3>
+        </div>
+    </div>
+    <div class="column">
+        <div class="text-container">
+            <a href="{{ url_for('solar_system') }}">
+                <img class="about-image3" src="https://i.ibb.co/LJ32gPf/8-modified.png" alt="solar-system">
+            </a>
+            <h3><a href="{{ url_for('solar_system') }}" class="custom-link">Live Planet Position & Speed</a></h3>
+        </div>
+    </div>
+</div>
+<br>
+<div>
+
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="button-container">
+
+            <a href="{{ url_for('iss') }}">
+                <button class="button button6">Live Astronauts & ISS </button>
+            <a>
+            
+            <br>
+            <br>
+
+            <a href="{{ url_for('starchart') }}">
+              <button class="button button6">Generate Sky Map of Your Location</button>
+            </a>
+
+            <br>
+            <br>
+          
+            <a href="{{ url_for('planet_conjunction') }}">
+              <button class="button button6">Planetary Conjunction</button>
+            </a>
+
+            <br>
+            <br>
+          
+            <a href="{{ url_for('moon_conj') }}">
+              <button class="button button6">Moon Planets Conjunction</button>
+            </a>
+          </div>
+          
+
+        <h1 class="main-heading">
+
+        
+
+            
+    </div>
+</body>
+</html>
+
+    <div style="margin-left: 20px;">
+        <h2>🌕Exploring Space and Time Conversions</h2>
+    </div>
+    
+    <!-- Page Links -->
+    <div style="margin-left: 20px; font-size: 18px;">
+        <p><a href="{{ url_for('weight') }}" class="menu-link"><li>Calculate your weight on different Planets</li></a></p>
+        <p><a href="{{ url_for('lightyear') }}" class="menu-link"><li>Astronomical Distance Converter</li></a></p>
+        <p><a href="{{ url_for('planetage') }}" class="menu-link"><li>Calculate Age on different Planets</li></a></p>
+        <p><a href="{{ url_for('julian') }}" class="menu-link"><li>Convert calendar date to Julian date</li></a></p>
+        <p><a href="{{ url_for('time_zone') }}" class="menu-link"><li>Time Zone Converter</li></a></p>
+        <p><a href="{{ url_for('gps_time') }}" class="menu-link"><li>GPS Time Converter</li></a></p>
+        <p><a href="{{ url_for('dsmdd') }}" class="menu-link"><li>Degree Minutes Second to Decimal degree</li></a></p>
+        <p><a href="{{ url_for('degree_convert') }}" class="menu-link"><li>Degrees to Hours, Minutes, Seconds Converter</li></a></p>
+        <p><a href="{{ url_for('latlon_distance') }}" class="menu-link"><li>Calculate distance between two points on Earth</li></a></p>
+    </div>
+
+        <h2>🚀Rocket and Satellite</h2>
+
+    </div>
+    
+    <!-- Page Links -->
+    <div style="margin-left: 20px; font-size: 18px;">
+        <p><a href="{{ url_for('sat_orbit') }}"class="menu-link"><li>Satellite Time Period</li></a></p>
+        <p><a href="{{ url_for('apogee') }}"class="menu-link"><li>Calculate Satellite Apogee and Perigee Heights </li></a></p>
+        <p><a href="{{ url_for('sat_speed') }}"class="menu-link"><li>Calculate Speed  </li></a></p>
+        
+    
+    
+        <h2>📍Exploring the world</h2>
+    </div>
+    
+    <!-- Page Links -->
+    <div style="margin-left: 20px; font-size: 18px;">
+        <p><a href="{{ url_for('darkmap') }}"class="menu-link"><li>Best Places for stargazing in india</li></a></p>
+        <p><a href="{{ url_for('spacemap') }}"class="menu-link"><li>Space Centers </li></a></p>
+        <p><a href="{{ url_for('launchpads') }}"class="menu-link"><li>Launch pad across world </li></a></p>
+        <p><a href="{{ url_for('starchart') }}"class="menu-link"><li>Star Chart</li></a></p>
+        
+        
+    </div>
+    
+    <!-- Button Section -->
+    <div style="margin-left: 20px;">
+        <a href="{{ url_for('astro_calender') }}">
+            <button class="button button2">Astronomy Calendar of Celestial Events for Calendar Year 2023</button>
+          </a>
+        <a href="{{ url_for('astro_calender') }}">
+            <button class="button button2">Astronomy Calendar of Celestial Events for Calendar Year 2023</button>
+          </a>
+    </div>
+    <br>
+    <br>
+
+    
+    {% endblock %}
+

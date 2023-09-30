@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomical Wonders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .topic-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .topic {
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 250px; /* Reduce the max-width of the container */
+            height: 350px
+        }
+
+        .topic img {
+            max-width: 80%; /* Make sure images fit within the container */
+            height: auto;
+        }
+
+        .topic h2 {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .topic p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .about-image3 {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .topic h2 {
+            font-size: 24px;
+            margin-top: 10px;
+            text-align: center; /* Center-align the h2 elements */
+        }
+
+        .topic p {
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center; /* Center-align the p elements */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="centered-text">Welcome to Cosmic Knowledge Hub</h1>
+    </header>
+    
+    <div class="topic-container">
+        <div class="topic">
+            <img class="about-image3" src="https://i.ibb.co/60gsGDk/solar.png" alt="solar-system">
+            <h2><a href="{{ url_for('learn_solar') }}" class="menu-link">The Solar System</a></h2>
+            <p>Learn about our solar system and its fascinating planets, moons, and asteroids.</p>
+        </div>
+
+        <div class="topic">
+            <img class="about-image3" src="https://i.ibb.co/hL4bDw5/planets-l.png" alt="solar-system">
+            <h2><a href="{{ url_for('learn_planets') }}" class="menu-link">Planets </a></h2>
+            <p>Explore about the members of solar system.</p>
+        </div>
+
+        
+        <div class="topic">
+            <img class="about-image3" src="https://i.ibb.co/pPXJ36n/astroid.png" alt="solar-system">
+            <h2><a href="{{ url_for('learn_astroid') }}" class="menu-link">Asteroids, Comets and Meteors</a></h2>
+            <p>Learn about the small celestial bodies Asteroids, Comets and Meteors.</p>
+        </div>
+        
+        <div class="topic">
+            <img class="about-image3" src="https://i.ibb.co/X4VDQ7T/blckhole.png" alt="solar-system">
+            <h2><a href="{{ url_for('learn_galaxy') }}" class="menu-link"> Supernva, the Deth of Stars </a> </h2>
+            <p>Supernova Impact on Cosmic Evolution</p>
+        </div>
+        
+        <div class="topic">
+            <img src="https://i.ibb.co/pjNH43v/galaxy.png" alt="Topic 2 Image">
+            <h2><a href="{{ url_for('learn_galaxy') }}" class="menu-link"> Galaxy </a> </h2>
+            <p>Embark on an exhilarating journey of discovery, delving into the intricate and awe-inspiring mysteries of galaxies.</p>
+        </div>
+        
+        <div class="topic">
+            <img src="https://i.ibb.co/p2MWCZD/big-bang.png" alt="Topic 3 Image">
+            <h2><a href="{{ url_for('learn_galaxy') }}" class="menu-link"> The Big Bang theory</a></h2>
+            <p>The Big Bang theory is the prevailing cosmological model that explains the origin of the universe</a></p>
+        </div>
+        
+        <!-- Add more topics and images here -->
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

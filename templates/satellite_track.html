@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visible Satellites</title>
+    <style>
+        body {
+            font-family: "Times New Roman";
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Satellites Passing Above you</h1>
+        <form method="post">
+            <label for="city">Enter City:</label>
+            <input type="text" name="city" value="{{ entered_city or 'Ahmedabad' }}" required>  
+            <button type="submit">Find Satellite</button>
+        </form>
+        {% if satellite_details %}
+        <h2>Currently Satellites passing above {{ entered_city or 'Ahmedabad' }}</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Altitude (degrees)</th>
+                    <th>Azimuth (degrees)</th>
+                </tr>
+                {% for sat in satellite_details %}
+                    <tr>
+                        <td>{{ sat.name }}</td>
+                        <td>{{ sat.altitude }}</td>
+                        <td>{{ sat.azimuth }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        {% if image %}
+            <img src="data:image/png;base64,{{ image }}" alt="Satellite Plot">
+        {% endif %}
+    </div>
+
+    <!-- Additional section about satellite tracking -->
+    <div id="container">
+        <h2>About Satellite Tracking</h2>
+        <p>
+            Satellite tracking involves observing the motion of artificial satellites as they orbit the Earth.
+            This web application uses data from various sources to identify visible satellites passing above your chosen city.
+            The polar plot displays the positions of these satellites in the sky, allowing you to visualize their paths.
+            Keep in mind that due to the fast movement of satellites, new ones can keep appearing in the sky.
+        </p>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

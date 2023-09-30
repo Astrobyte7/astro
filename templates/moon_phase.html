@@ -1,0 +1,224 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+    
+        }
+
+        
+        /* ... Your existing styles ... */
+
+        .form-group {
+            display: flex;
+            flex-direction: column; /* Change to stack elements vertically */
+            align-items: center; /* Center align elements horizontally */
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-bottom: 5px; /* Add a small gap below each label */
+        }
+
+        input[type="date"], select, input[type="submit"] {
+            width: 50%; /* Make input and button full width of the form */
+            box-sizing: border-box; /* Include padding in width calculation */
+            padding: 8px; /* Add padding for a more compact look */
+            border: 1px solid #ccc; /* Add a border to input fields */
+            border-radius: 4px; /* Add rounded corners */
+            margin-bottom: 10px; /* Add some spacing between elements */
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            padding: 10px 20px; /* Add padding to the button */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: black;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .interesting-facts {
+            /* Existing styles for the interesting facts section */
+        }
+
+        .moon-phases {
+            background-color: white;
+            padding: 20px;
+            
+        }
+
+        .moon-phases h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .moon-phases p {
+            color: black;
+            font-size: 1.1em;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .moon-phases ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .moon-phases li {
+            margin-bottom: 10px;
+            color: black;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>Moon Phase</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="date">Choose a date:</label>
+            <input type="date" id="date" name="date" value="{{ date_str }}" required>
+            <label for="timezone">Timezone:</label>
+            <select name="timezone" id="timezone">
+                {% for tz in timezones %}
+                    <option value="{{ tz }}" {% if tz == selected_timezone %}selected{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </div>
+    
+
+    <!-- Display images based on moon's age -->
+{% if -1 <= age_of_moon <= 1 %}
+    <img src="https://i.ibb.co/HXKmMws/no-moon2.png" alt="Image 1">
+{% elif 1 <= age_of_moon <= 2.3 %}
+    <img src="https://i.ibb.co/nbzGYDQ/day2.jpg" alt="Image 1">
+{% elif 2.3 <= age_of_moon <= 3.2 %}
+    <img src="https://i.ibb.co/nbzGYDQ/day2.jpg" alt="Image 2">
+{% elif 3.2 <= age_of_moon <= 3.6 %}
+    <img src="https://i.ibb.co/hcyWbYf/day3.jpg" alt="Image 3">
+{% elif 3.6 <= age_of_moon <= 5 %}
+    <img src="https://i.ibb.co/qgxnZQQ/day5.jpg" alt="Image 4">
+{% elif 5 <= age_of_moon <= 6 %}
+    <img src="https://i.ibb.co/ZX29nf3/day6.jpg" alt="Image 5">
+{% elif 6 <= age_of_moon <= 7.1 %}
+    <img src="https://i.ibb.co/NVQYCkv/day7.jpg" alt="Image 6">
+{% elif 7.1 <= age_of_moon <= 7.6 %}
+    <img src="https://i.ibb.co/8rhG9nd/day8.jpg" alt="Image 7">
+{% elif 7.6 <= age_of_moon <= 8.8 %}
+    <img src="https://i.ibb.co/SyC6k7h/day9.jpg" alt="Image 8">
+{% elif 8.8 <= age_of_moon <= 9.7 %}
+    <img src="https://i.ibb.co/z621WQK/day10.jpg" alt="Image 9">
+{% elif 9.7 <= age_of_moon <= 10.8 %}
+    <img src="https://i.ibb.co/KG8YXrv/day11.jpg" alt="Image 10">
+{% elif 10.8 <= age_of_moon <= 11.7 %}
+    <img src="https://i.ibb.co/C7bQPR8/day12.jpg" alt="Image 11">
+{% elif 11.7 <= age_of_moon <= 13.2 %}
+    <img src="https://i.ibb.co/cL9mhps/day13.jpg" alt="Image 12">
+{% elif 13.2 <= age_of_moon <= 14.2 %}
+    <img src="https://i.ibb.co/wsQBBdD/day14.jpg" alt="Image 13">
+{% elif 14.2 <= age_of_moon <= 14.8 %}
+    <img src="https://i.ibb.co/thXx9Wt/day15.jpg" alt="Image 14">
+{% elif 14.8 <= age_of_moon <= 16 %}
+    <img src="https://i.ibb.co/n3Lfz2L/day16.jpg" alt="Image 15">
+{% elif 16 <= age_of_moon <= 16.9 %}
+    <img src="https://i.ibb.co/0skftgb/day17.jpg" alt="Image 16">
+{% elif 16.9 <= age_of_moon <= 18 %}
+    <img src="https://i.ibb.co/GQYftmd/day18.jpg" alt="Image 17">
+{% elif 18 <= age_of_moon <= 19 %}
+    <img src="https://i.ibb.co/hgffHfV/day19.jpg" alt="Image 18">
+{% elif 19 <= age_of_moon <= 20 %}
+    <img src="https://i.ibb.co/kg08yPq/day20.jpg" alt="Image 19">
+{% elif 20 <= age_of_moon <= 21 %}
+    <img src="https://i.ibb.co/cv1vtWG/day21.jpg" alt="Image 20">
+{% elif 21 <= age_of_moon <= 22 %}
+    <img src="https://i.ibb.co/hBFbQCT/day22.jpg" alt="Image 21">
+{% elif 22 <= age_of_moon <= 23 %}
+    <img src="https://i.ibb.co/j4jctBC/day23.jpg" alt="Image 22">
+{% elif 23 <= age_of_moon <= 23.9 %}
+    <img src="https://i.ibb.co/bLs6w7D/day24.jpg" alt="Image 23">
+{% elif 23.9 <= age_of_moon <= 25 %}
+    <img src="https://i.ibb.co/JBc9JtP/day25.jpg" alt="Image 24">
+{% elif 25 <= age_of_moon <= 26 %}
+    <img src="https://i.ibb.co/LtmCM04/day26.jpg" alt="Image 25">
+{% elif 26 <= age_of_moon <= 26.7 %}
+    <img src="https://i.ibb.co/ZJKxxfk/day27.jpg" alt="Image 26">
+{% elif 26.7 <= age_of_moon <= 27.8 %}
+    <img src="https://i.ibb.co/wsQBBdD/day14.jpg" alt="Image 27">
+{% elif 27.8 <= age_of_moon <= 29.99 %}
+    <img src="https://i.ibb.co/HXKmMws/no-moon2.png" alt="Image 28">
+{% else %}
+    <!-- Default image if age is not within any specified range -->
+    <img src="default_image_link" alt="Default Image">
+{% endif %}
+
+    </form>
+    <h2>Phase: {{ phase_name }}</h2>
+    <h2>Percentage of illumination: {{ percent }}%</h2>
+    <h2>Age of the moon: {{ age_of_moon }} days</h2>
+    <h2>Next new moon: {{ next_new_moon_date }}</h2>
+    <h2>Next full moon: {{ next_full_moon_date }}</h2>
+</body>
+</html>
+
+<div class="moon-phases">
+    <h2>Moon Phases</h2>
+    <p>The moon goes through several phases as it orbits the Earth. These phases include:</p>
+    <ul>
+        <li><strong>🌑New Moon:</strong> The moon is not visible from Earth.</li>
+        <li><strong>🌒Waxing Crescent:</strong> A small part of the right side is visible, resembling a crescent.</li>
+        <li><strong>🌓 First Quarter:</strong> Half of the moon is visible, resembling a quarter circle.</li>
+        <li><strong>🌔Waxing Gibbous:</strong> More than half of the moon is visible, but less than a full moon.</li>
+        <li><strong>🌕Full Moon:</strong> The entire face of the moon is visible from Earth.</li>
+        <li><strong>🌖Waning Gibbous:</strong> More than half of the moon is visible, but less than a full moon.</li>
+        <li><strong>🌗 Last Quarter:</strong> Half of the moon is visible, resembling a quarter circle.</li>
+        <li><strong>🌘Waning Crescent:</strong> A small part of the left side is visible, resembling a crescent.</li>
+    </ul>
+</div>
+</body>
+</html>
+<br>
+{% endblock %}

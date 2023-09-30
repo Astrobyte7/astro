@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight on Different Celestial Bodies</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Calculate Your Weight on Different Celestial Bodies</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="weight">Enter your weight on Earth (kg):</label>
+                <input type="number" class="form-control" name="weight" id="weight" style="max-width: 200px;">
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+        <div class="mt-4">
+            <h2>Your weight on different celestial bodies:</h2>
+            <ul class="list-group">
+                {% for planet in planets %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ planet }}: {% if weights %}{{ weights[planet]|round(2) }} kg{% else %} - {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mt-5">
+            <h2 class="text-center">Why is Your Weight Different on Other Planets?</h2>
+            <p class="text-center text-muted">The difference in weight across different planets is primarily due to the variations in gravitational force exerted by each celestial body. Here's how it works:</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="text-center">Gravity</h3>
+                    <p class="text-center">Gravity is the force that pulls objects towards the center of a celestial body. It's affected by the mass of the body and the distance from its center.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-center">Mass and Size</h3>
+                    <p class="text-center">Different planets have different masses and sizes. Larger planets usually have stronger gravity, pulling objects more forcefully towards their center.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-center">Composition</h3>
+                    <p class="text-center">The composition of a planet can also affect its gravitational pull. Denser planets exert a stronger gravitational force, even if they are smaller in size.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

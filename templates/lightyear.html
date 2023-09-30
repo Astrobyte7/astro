@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Distance Unit Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        
+        }
+        h1 {
+            color: #343a40;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .form-control {
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 18px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .result-section {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .result-explanation {
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+        }
+        .unit-explanation {
+            font-size: 16px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .unit-explanation h3 {
+            color: #343a40;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distance Unit Converter</h1>
+        <form method="post">
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Value</label>
+                    <input type="number" name="value" class="form-control" step="any" required value="{{ value }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">From Unit</label>
+                    <select class="form-control" name="from_unit">
+                        {% for key, label in units.items() %}
+                            <option value="{{ key }}" {% if from_unit == key %} selected {% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">To Unit</label>
+                    <select class="form-control" name="to_unit">
+                        {% for key, label in units.items() %}
+                            <option value="{{ key }}" {% if to_unit == key %} selected {% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+        
+        {% if converted_value %}
+        <div class="result-section mt-4">
+            <h2 class="mb-3">Conversion Result</h2>
+            <p>{{ value }} {{ units[from_unit] }} is equal to {{ converted_value }} {{ units[to_unit] }}</p>
+        </div>
+        {% endif %}
+        
+        <div class="unit-explanation">
+            <h3>Unit Explanations</h3>
+            <p><strong>Light Years:</strong> A unit of distance that represents the distance that light travels in one year in a vacuum.</p>
+            <p><strong>Parsecs:</strong> A unit of distance used in astronomy to measure vast interstellar distances.</p>
+            <p><strong>Astronomical Units (AU):</strong> A unit of distance based on the average distance between the Earth and the Sun.</p>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

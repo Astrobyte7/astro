@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Astronauts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 20px;
+            padding: 0;
+            text-align: left;
+        
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>International Space Station (ISS) Astronauts</h1>
+    </header>
+
+    <main>
+        {% if astronaut_data %}
+        <p>Number of astronauts currently in space: {{ astronaut_data[0] }}</p>
+
+        <h2>Astronauts and their spacecraft:</h2>
+        <ul>
+            {% for astronaut in astronaut_data[1] %}
+            <li>{{ astronaut['name'] }} - {{ astronaut['craft'] }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Current ISS Location:</h2>
+        <p>Latitude: {{ astronaut_data[2] }}</p>
+        <p>Longitude: {{ astronaut_data[3] }}</p>
+        {% else %}
+        <p class="error">Oops! An error occurred while fetching data.</p>
+        {% endif %}
+    </main>
+
+    <script>
+        var norad_n2yo = '25544|ISS,43600|Aeolus,20580|HST';
+        var size_n2yo = 'large';
+        var allpasses_n2yo = '0';
+        var map_n2yo = '2';
+    </script>
+    <script type="text/javascript" src="https://www.n2yo.com/js/widget-tracker.js"></script>
+</body>
+
+</html>
+
+{% endblock %}

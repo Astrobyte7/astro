@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rocket Delta-V Calculator</title>
+</head>
+<body>
+    <h1>Rocket Delta-V Calculator</h1>
+    <form method="post">
+        <label for="initial_mass">Initial Mass (kg):</label>
+        <input type="number" name="initial_mass" id="initial_mass" required value="{{ initial_mass }}">
+        <br>
+        <label for="final_mass">Final Mass (kg):</label>
+        <input type="number" name="final_mass" id="final_mass" required value="{{ final_mass }}">
+        <br>
+        <label for="specific_impulse">Specific Impulse (s):</label>
+        <input type="number" name="specific_impulse" id="specific_impulse" required value="{{ specific_impulse }}">
+        <br>
+        <input type="submit" value="Calculate Delta-V">
+    </form>
+
+    {% if delta_v is not none %}
+    <p>Delta-V: {{ delta_v }} m/s</p>
+    {% endif %}
+
+    {% if img_base64 is not none %}
+    <img src="data:image/png;base64,{{ img_base64 }}" alt="Velocity vs. Time Plot">
+    {% endif %}
+</body>
+</html>

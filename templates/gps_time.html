@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<html>
+<head>
+    <title>GPS Time Converter</title>
+    <style>
+        body {
+            background-color:white;
+        
+        }
+
+        .header {
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        
+           
+        }
+
+        h1 {
+            margin: 0 0 15px;
+            color: #333;
+            font-size: 28px;
+        
+        }
+
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            
+        }
+
+        .explanation {
+            margin-top: 40px;
+            margin-left: 40px;
+            text-align: left;
+
+        }
+
+        .explanation h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .explanation p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .sticky-result {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GPS Time Converter</h1>
+        <p>Convert calendar date and time to GPS Time</p>
+    </div>
+
+    <div class="container">
+        <form id="conversionForm" method="post">
+            <label for="input_datetime">Enter a date and time:</label>
+            <input type="datetime-local" id="input_datetime" name="input_datetime" value="{{ input_datetime }}" required> <br> <br>
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="result">
+            {% if gps_time is not none %}
+            <p><strong>Chosen Date and Time:</strong> <span id="chosen_datetime">{{ input_datetime }}</span></p>
+            <p><strong>GPS Time:</strong> <span id="gps_time">{{ gps_time }}</span></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="explanation">
+        <h2>What is GPS Time?</h2>
+        <p>GPS Time is a continuous time scale used by the Global Positioning System (GPS) satellites to provide accurate timing information for navigation and synchronization purposes.</p>
+        
+        <h2>Accuracy of GPS Time</h2>
+        <p>GPS Time is typically accurate to within a few nanoseconds. It's used for various applications such as navigation, surveying, telecommunications, and more.</p>
+
+        <h2>How GPS Time Works</h2>
+        <p>GPS satellites have onboard atomic clocks that generate the GPS Time. Receivers on Earth use signals from multiple satellites to calculate their position and the current GPS Time. Triangulating the distances to satellites allows the receiver to determine its position.</p>
+    </div>
+
+    <script>
+        // JavaScript to update the chosen date and time after form submission
+        const chosenDatetimeElement = document.getElementById('chosen_datetime');
+        const inputDatetimeElement = document.getElementById('input_datetime');
+        
+        inputDatetimeElement.addEventListener('change', () => {
+            chosenDatetimeElement.textContent = inputDatetimeElement.value;
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

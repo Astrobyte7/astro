@@ -1,0 +1,90 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Add Graphics to a SceneView | Sample | ArcGIS Maps SDK for JavaScript 4.27</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.27/"></script>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/GraphicsLayer",
+        "esri/Graphic"
+      ], function(Map, SceneView, GraphicsLayer, Graphic) {
+        var map = new Map({
+          basemap: "hybrid"
+        });
+
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          camera: {
+            position: {
+              x: -0.17746710975334712,
+              y: 51.44543992422466,
+              z: 1266.7049653716385
+            },
+            heading: 0.34445102566290225,
+            tilt: 82.95536300536367
+          }
+        });
+
+        var graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        var pointGraphic;
+
+        function getISSLocation() {
+          fetch("https://api.wheretheiss.at/v1/satellites/25544")
+            .then(response => response.json())
+            .then(data => {
+              var point = {
+                type: "point",
+                longitude: data.longitude,
+                latitude: data.latitude,
+                z: data.altitude * 1000 // Altitude is in kilometers, but z is in meters in ArcGIS
+              };
+
+              var markerSymbol = {
+                type: "simple-marker",
+                color: [226, 119, 40],
+                outline: {
+                  color: [255, 255, 255],
+                  width: 2
+                }
+              };
+
+              if (pointGraphic) {
+                graphicsLayer.remove(pointGraphic);
+              }
+
+              pointGraphic = new Graphic({
+                geometry: point,
+                symbol: markerSymbol
+              });
+
+              graphicsLayer.add(pointGraphic);
+            })
+            .catch(error => console.log(error));
+        }
+
+        getISSLocation();
+        setInterval(getISSLocation, 5000); // Update ISS position every 5 seconds
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>

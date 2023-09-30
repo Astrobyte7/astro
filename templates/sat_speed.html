@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Satellite Speed Calculator</title>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #fff;
+           
+            max-width: 800px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        p {
+            text-align: left;
+            line-height: 1.4;
+            margin-top: 15px;
+        }
+        .result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .equation {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Satellite Speed Calculator</h1>
+
+        <img src="https://i.ibb.co/7K4JV7G/orbit2.png" alt="An example image" width="360" height="300">
+        <form method="POST">
+            <label for="altitude">Enter Altitude (in kilometers):</label>
+            <input type="text" name="altitude" {% if altitude %}value="{{ altitude }}" {% endif %}required>
+            <br>
+            <br>
+            <input type="submit" value="Calculate">
+        </form>
+        {% if speed is not none %}
+        <div class="result">
+            <p>The speed of a satellite at an altitude of {{ altitude }} kilometers is approximately:</p>
+            <p>{{ (speed/1000)|round(2) }} km/s</p>
+        </div>
+        {% endif %}
+        <div class="explanation">
+            <p><strong>Explanation:</strong></p>
+            <div class="equation" id="math-equation">
+                \( \text{Speed} = \sqrt{\frac{G \cdot M}{R + h}} \)
+            </div>
+            <p>Where:</p>
+            <ul>
+                <li><strong>Speed</strong> is the orbital speed of the satellite (in m/s).</li>
+                <li><strong>G</strong> is the gravitational constant (\(6.67430 \times 10^{-11}\, \text{m}^3/\text{kg}/\text{s}^2\)).</li>
+                <li><strong>M</strong> is the mass of the Earth (\(5.972 \times 10^{24}\, \text{kg}\)).</li>
+                <li><strong>R</strong> is the radius of the Earth (mean Earth radius of approximately 6,371,000 meters).</li>
+                <li><strong>h</strong> is the altitude of the satellite above the Earth's surface (in meters).</li>
+            </ul>
+        </div>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <script>
+        // JavaScript code to render the LaTeX equation using MathJax
+        MathJax.typeset(["math-equation"]);
+    </script>
+</body>
+</html>
+
+<br>
+<br>
+
+{% endblock %}

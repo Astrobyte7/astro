@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="center">
+        <h1><title>Star Chart Generator</title></h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .input-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .result-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        form label {
+            font-weight: bold;
+        }
+        form input[type="text"],
+        form input[type="date"],
+        form input[type="time"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        p.message {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Star Chart Generator</h1>
+
+    <!-- Input Form Section -->
+    <div class="input-container">
+        <form method="POST" action="/starchart">
+            <label for="city_name">Enter City Name:</label>
+            <input type="text" id="city_name" name="city_name" required value="{{ request.form['city_name'] if request.form['city_name'] }}" >
+            <br>
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required value="{{ request.form['date'] if request.form['date'] }}">
+            <br>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required value="{{ request.form['time'] if request.form['time'] }}">
+            <br>
+
+            <label for="timezone">Select Timezone:</label>
+            <select id="timezone" name="timezone">
+                <option value="Asia/Kolkata" {{ 'selected' if timezone == 'Asia/Kolkata' else '' }}>Asia/Kolkata</option>
+                <option value="America/Los_Angeles" {{ 'selected' if timezone == 'America/Los_Angeles' else '' }}>America/Los_Angeles</option>
+                <option value="America/New_York" {{ 'selected' if timezone == 'America/New_York' else '' }}>America/New_York</option>
+                <option value="Europe/London" {{ 'selected' if timezone == 'Europe/London' else '' }}>Europe/London</option>
+                <option value="Europe/Paris" {{ 'selected' if timezone == 'Europe/Paris' else '' }}>Europe/Paris</option>
+                <option value="America/Toronto" {{ 'selected' if timezone == 'America/Toronto' else '' }}>America/Toronto (Eastern Time - Toronto)</option>
+                <!-- Add more Canadian timezones or other timezones as needed -->
+            </select>
+            <br>
+
+            <button type="submit">Generate Star Chart</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- Result Section -->
+    <br>
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %}
+
+    {% if image_data %}
+    <!-- Display the result image if available -->
+    <img src="data:image/png;base64,{{ image_data }}" alt="Star Chart">
+    {% elif not show_initial_image %}
+    <!-- Display the initial image if the flag is set to false -->
+    <div id="initialImageContainer">
+        <img src="https://i.ibb.co/DKPFXKm/star-chart.png" alt="Image 1">
+    </div>
+    {% endif %}
+</body>
+
+<!-- Set the show_initial_image flag based on the presence of image_data -->
+<script>
+    {% if image_data %}
+    var show_initial_image = false;
+    {% else %}
+    var show_initial_image = true;
+    {% endif %}
+</script>
+</html>
+
+<br>
+<br>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasons, Solstice and Equinox</title>
+    <style>
+        body {
+            font-family: Times new Roman, sans-serif;
+            text-align: center;
+            background-color: white;
+        
+        }
+        h1 {
+            color: black;
+        }
+        h3 {
+            color: #333;
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        select, input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            font-size: 18px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 0px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        h4 {
+            color: #4285F4;
+          }
+          p {
+            color: #333;
+          }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h1>Seasons, Solstice and Equinox</h1>
+            <form action="/calculate" method="post">
+                <label for="year">Enter Year (1899 to 2053):</label>
+                <input type="number" name="year" id="year" value="{{ year }}" min="1899" max="2053" required>
+                <label for="timezone">Choose a time zone:</label>
+                <select name="timezone" id="timezone">
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}" {% if tz == timezone %}selected{% endif %}>{{ tz }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Calculate">
+            </form>
+            {% if results %}
+                <h3>Results:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Season</th>
+                            <th>Date and Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ result.split(':')[0] }}</td>
+                                <td>{{ result.split(':')[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+        <div class="info-section">
+            <h3>Vernal Equinox</h3>
+            <p>Occurs around March 20-21. It marks the beginning of spring and the point when day and night are approximately equal in length.</p>
+            
+            <h3>Summer Solstice</h3>
+            <p>Occurs around June 20-21. It is the longest day of the year and marks the beginning of summer.</p>
+            
+            <h3>Autumnal Equinox</h3>
+            <p>Occurs around September 22-23. It marks the beginning of autumn and the point when day and night are again roughly equal in length.</p>
+            
+            <h3>Winter Solstice</h3>
+            <p>Occurs around December 21-22. It is the shortest day of the year and marks the beginning of winter.</p>
+            
+            <p>The Earth's axis is tilted relative to its orbital plane, and as the Earth orbits the Sun, different parts of the Earth receive varying amounts of sunlight at different times of the year. This is what causes the changes in the length of day and night and the different seasons.</p>
+            
+            </body>
+            </html>
+            
+            
+            
+            
+            
+            
+{% endblock %}

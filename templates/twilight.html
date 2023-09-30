@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilight Times Finder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+    
+        .input-group {
+            width: 100%;
+            margin: 15px 0;
+            padding: 5px;
+        }
+    
+        label, input, select {
+            width: 100%; /* Set equal width for labels, inputs, and selects */
+            padding: 12px;
+            font-weight: bold;
+            box-sizing: border-box; /* Include padding within the width */
+        }
+    
+        input[type="submit"] {
+            width: 100%; /* Set equal width for the submit button */
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #results p {
+            color: #555;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            margin: 5px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Twilight Times Finder</h1>
+        <form method="POST">
+            <div class="input-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="{{ date_input }}">
+            </div>
+            <div class="input-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" value="{{ request.form.city or 'Ahmedabad' }}">
+            </div>
+            <div class="input-group">
+                <label for="timezone">Timezone:</label>
+                <select name="timezone" id="timezone">
+                    {% for timezone in timezones %}
+                    <option value="{{ timezone }}">{{ timezone }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Find Times">
+        </form>
+        <h2>Results:</h2>
+        <div id="results">
+            {% for result in results %}
+            <p>{{ result }}</p>
+            {% else %}
+            <p>Result will appear here...</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        h2 {text-align: center;}
+    </style>
+
+    <div class="twilight-explanations">
+        <div class="container">
+            <h2> Twilight Phases</h2>
+
+            <img src="https://i.ibb.co/yWg1whj/twilight-types.png" alt="Twilight Types">
+            <ul>
+            <h3>Astronomical Twilight:</h3>
+            <p>As the world gently transitions from day to night, during astronomical twilight, the sky takes on a deep, enchanting hue. This is a time of wondrous stargazing, when celestial bodies begin to reveal themselves, and the stars' brilliance sparkles against the velvety canvas above.</p>
+            
+            <h3>Nautical Twilight Starts:</h3>
+            <p>Nautical twilight commences, a sailor's delight, Where sky and sea mingle, a mystic sight. Horizons dance with shades of blue and gold,An enchanting realm where tales of seafarers unfold.</p>
+            
+            <h3>Civil Twilight Starts:</h3>
+            <p>Civil twilight heralds the gentle break of day,As dawn's first whispers light the world's way.Tranquil moments bridge the night and morn,A canvas of hope, a fresh chapter is born.</p>
+            
+            <h3>Day Starts:</h3>
+            <p>The sun ascends, casting warmth and grace, Day's symphony unfolds, life quickens its pace. Radiant hues paint the world's grand scene, A radiant spectacle of gold, red, and green.</p>
+
+
+            <!-- Add similar explanations for the other twilight phases -->
+
+            <h3>Day Ends:</h3>
+            <p>As the sun's embrace begins to wane, Day's end draws near, a tender refrain. Shadows stretch long, a serene parade, Night's gentle touch in dusk's soft cascade.</p>
+
+            <h3>Civil Twilight Ends:</h3>
+            <p>Civil twilight bids a fond adieu, A tranquil transition as daylight withdrew. The veil between realms gently unfurled, Night's embrace unfurls as day's canvas is furled.</p>
+
+            <h3>Nautical Twilight Ends:</h3>
+            <p>Nautical twilight bids its last farewell, Sky and sea part ways, stories to tell. Stars emerge brighter, night's tapestry spun, Nautical twilight ends, the voyage begun.</p>
+
+            <h3>Astronomical Twilight Starts:</h3>
+            <p>With nautical twilight's end, the world embraces the tranquil darkness of the night. The stars emerge in full splendor, guiding wanderers and dreamers through the mystery of the nocturnal expanse.</p>
+
+            <h3>Astronomical Twilight Ends:</h3>
+            <p>As astronomical twilight comes to an end, the universe unveils its awe-inspiring tapestry of stars and galaxies. This is a time for cosmic reflections, where the heavens hold their secrets close, inviting us to explore their mysteries.</p>
+
+            <h3>In the delicate dance between day and night, these twilight phases mark the transitions that grace our world with their ethereal beauty, each offering its own unique enchantment and an opportunity to connect with the universe in a profoundly poetic way.</h3>
+            <uli>
+
+
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

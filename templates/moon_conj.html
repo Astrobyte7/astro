@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0px;
+            background-color: white;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 11px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h2 {
+            background-color: #f2f2f2;
+            padding: 8px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 16px;
+            margin-top: 20px;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Moon Planet Conjunction</h1>
+        <form method="POST">
+            <label for="year"><strong>Enter Year:</strong></label>
+            <input type="text" name="year" id="year" value="{{ year }}">
+            <button type="submit">Find</button>
+        </form>
+        <hr>
+        <h2>Year rang from 1000 to 3000 </h2>
+        {% if headings %}
+        <table>
+            <tr>
+                {% for heading in headings %}
+                <th>{{ heading }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        <div class="explanation">
+            <h2>Moon-Planet Conjunction: Exploring Celestial Dances</h2>
+            <p>In the realm of celestial events, a Moon-Planet Conjunction is a captivating occurrence that brings together two of our most beloved celestial bodies: the Moon and a planet from our solar system. This cosmic rendezvous involves the apparent alignment or close proximity of the Moon and a planet as observed from Earth. Imagine these celestial actors stepping onto a grand cosmic stage to perform an exquisite dance.</p>
+
+            <h2>Types of Planetary Conjunctions</h2>
+            <p><strong>1. The Dance Steps:</strong> Picture yourself gazing up at the night sky. When a Moon-Planet Conjunction takes place, you'll see the Moon and a planet sharing the same patch of the sky, forming a stunning visual spectacle. The Moon, Earth's loyal companion, and a distant planet, each with its unique radiance, join forces to create a breathtaking tableau.</p>
+            <p><strong>2. The Choreography:</strong> The choreography of a Moon-Planet Conjunction is orchestrated by the mechanics of our solar system. While the Moon orbits Earth and Earth orbits the Sun, the planets follow their own graceful orbits around the Sun. Occasionally, their orbits align in such a way that they appear close to each other from our vantage point on Earth. This captivating choreography is an illusion of perspective, as the celestial bodies are still vastly separated by enormous distances.</p>
+            <p><strong>3. The Performance:</strong> As dusk transitions into night, or before the break of dawn, you might spot this celestial performance. Imagine the radiant crescent or gibbous Moon positioned alongside a planet—perhaps the fiery Mars, the elegant Venus, or the majestic Jupiter. The contrasting brilliance of the Moon against the planet's steady glow paints an enchanting scene across the canvas of the sky.</p>
+            <p><strong>4. The Astronomer's Delight:</strong> Astronomers and stargazers eagerly anticipate Moon-Planet Conjunctions as opportunities to witness rare cosmic alignments. These events offer a chance to appreciate the beauty and precision of our solar system's celestial ballet. Whether observed through the naked eye, binoculars, or a telescope, the sight of the Moon and a planet in close proximity is a reminder of the interconnectedness of the universe.</p>
+              </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

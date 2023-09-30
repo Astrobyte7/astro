@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Solar Eclipse Predictor</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            margin-bottom: 50px;
+            color: #007BFF;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px 50px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        .section {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Solar Eclipse Predictor</h1>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <form action="/" method="post" class="form-inline justify-content-center">
+                    <div class="form-group mb-2">
+                        <label for="year" class="mr-2">Enter a year:</label>
+                        <input type="text" name="year" class="form-control" value="{{ year_entered }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2 mb-2">Get Eclipses</button>
+                </form>
+            </div>
+        </div>
+
+        {% if results %}
+        <div class="section">
+            <h2 class="text-center">Eclipses for {{ year_entered }}:</h2>
+            <ul class="list-group mt-3">
+            {% for date in results %}
+                <li class="list-group-item">{{ date }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="section">
+            <h2 class="text-center">About Solar Eclipses</h2>
+            <p>
+                A solar eclipse occurs when the Moon passes between the Sun and the Earth, blocking all or part of the Sun's light.
+                This happens only during a new moon when the three celestial bodies are aligned in a straight line.
+            </p>
+            <h3>Types of Solar Eclipses</h3>
+            <ul>
+                <li>Total Solar Eclipse</li>
+                <li>Partial Solar Eclipse</li>
+                <li>Annular Solar Eclipse</li>
+            </ul>
+            <h3>Myths and Cultural Beliefs</h3>
+            <p>
+                Throughout history, solar eclipses have been the subject of various myths and cultural beliefs.
+                Some cultures believed they were a sign of the gods' displeasure, while others saw them as opportunities for transformation.
+            </p>
+            <h3>Interesting Facts</h3>
+            <ul>
+                <li>A total solar eclipse is a rare event that can be seen from a specific location about once every 375 years.</li>
+                <li>The "diamond ring effect" is visible just before and after a total solar eclipse, when a small sliver of the Sun is still visible.</li>
+                <li>During a total solar eclipse, the sky becomes dark, and stars and planets become visible.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS for some interactive components -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

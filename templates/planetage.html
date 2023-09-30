@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age on Planets</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #3a5172;
+        
+        }
+        form {
+            background-color: white;
+        }
+        #results {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 20px;
+        }
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            padding: 10px;
+            background: #ffffff;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            color: #3a5172;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #28a745; /* Green color */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .explanation {
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculate Your Age on Different Planets</h1>
+    <form action="/planetage" method="post" class="mb-4">
+    <div class="main-container">
+        <div class="calculation-container">
+            <form action="/" method="post">
+                <label for="birthdate">Select your birthdate:</label>
+                <input type="date" id="birthdate" name="birthdate" required value="{{ birthdate|default('') }}">
+                <input type="submit" value="Calculate">
+            </form>
+            <div id="results">
+                {% for planet in ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'] %}
+                <div class="result-item">
+                    <label for="{{ planet }}">{{ planet }}:</label>
+                    <input type="text" id="{{ planet }}" name="{{ planet }}" readonly value="{{ results[planet]|default('') }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="explanation-container">
+            <div class="explanation">
+                <h2>Why do planets have different orbiting periods?</h2>
+                <p>Planets have different orbiting periods due to their varying distances from the Sun and the gravitational forces at play. The farther a planet is from the Sun, the longer it takes to complete one orbit, resulting in a longer year.</p>
+                <h2>Facts about age on different planets:</h2>
+                <p>Your age on different planets varies due to the length of each planet's year. For example, a year on Jupiter takes about 11.9 Earth years, so you'd be younger on Jupiter. Conversely, a year on Mercury takes just 88 Earth days, so you'd be older on Mercury!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

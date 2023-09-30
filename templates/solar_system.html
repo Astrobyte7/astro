@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Solar System</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            
+            padding: 0;
+
+        
+        
+        }
+        
+        #header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        #inputs {
+            text-align: center; /* Center the inputs */
+            margin-bottom: 20px;
+        }
+        
+        #inputs label {
+            margin-right: 10px;
+            display: block; /* Display labels and inputs as block elements */
+            margin-bottom: 10px; /* Add some spacing between label and input */
+        
+        }
+
+        #plot {
+            width: 80%; /* Set the width of the plot */
+            display: inline-block;
+        }
+        
+        #info-table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+        
+        #info-table th,
+        #info-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        
+        #info-table th {
+            background-color: #f2f2f2;
+        }
+        
+        #information {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        #information h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        #information h3 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+        
+        #information p {
+            line-height: 1.6;
+            width: 100%;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+            button:hover {
+            background-color: #45a049;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Solar System</h1>
+        </div>
+        <div id="inputs">
+            <label for="date"><strong>Select a date:</strong></label>
+            <input type="date" id="date" name="date" required>
+            <br> <!-- Add a line break to move to the next line -->
+            <label for="time"><strong>Select a time:</strong></label>
+            <input type="time" id="time" name="time" required>
+            <br> <!-- Add a line break to move to the next line -->
+            <br> <!-- Add a line break to move to the next line -->
+            <button onclick="plotOrbits()">Calculate</button>
+        </div>
+    <h3>Planet Distance and Speed on Selected Date & Time</h3>
+        
+        
+            <table id="info-table">
+                
+                <tr>
+                    <th>Planet</th>
+                    <th>Distance from Sun (AU)</th>
+                    <th>Speed (m/s)</th>
+                </tr>
+            </table>
+        </div>
+
+        
+        <div id="plot-container">
+            <h2>Position of planets on a selected time & date</h2>
+            <div id="plot"></div>
+        </div>
+    </div>
+    <script>
+        function plotOrbits() {
+            var date = document.getElementById('date').value;
+            var time = document.getElementById('time').value;
+            fetch('/get_orbits', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ date: date, time: time })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var traces = data.map(planetData => {
+                        return {
+                            x: planetData.x_orbit,
+                            y: planetData.y_orbit,
+                            mode: 'lines',
+                            name: planetData.planet
+                        };
+                    });
+
+                    data.forEach(planetData => {
+                        traces.push({
+                            x: [planetData.x_pos],
+                            y: [planetData.y_pos],
+                            mode: 'markers',
+                            name: planetData.planet + ' Position',
+                            marker: { size: 10 }
+                        });
+                    });
+
+                    traces.push({
+                        x: [0],
+                        y: [0],
+                        mode: 'markers',
+                        name: 'Sun',
+                        marker: { size: 20, color: 'yellow' }
+                    });
+
+                    var layout = {
+                        title: 'Circular Orbits of Planets',
+                        xaxis: { title: 'X (AU)', showgrid: false },
+                        yaxis: { title: 'Y (AU)', scaleanchor: 'x', showgrid: false },
+                        showlegend: true,
+                        autosize: false,
+                        width: 500,
+                        height: 700,
+                        margin: {
+                            l: 50,
+                            r: 50,
+                            b: 50,  // Adjust the bottom margin to make space for the legend
+                            t: 100,
+                            pad: 4
+                        },
+                        legend: {
+                            x: 0,
+                            y: -0.2,  // Adjust the value to position the legend below the plot
+                            orientation: 'h'  // Display the legend horizontally
+                        }
+                    };
+        
+                    Plotly.newPlot('plot', traces, layout);
+
+                    var tableHtml = data.map(planetData => {
+                        return `<tr><td>${planetData.planet}</td><td>${planetData.distance_from_sun.toFixed(2)}</td><td>${planetData.speed.toFixed(2)}</td></tr>`;
+                    }).join('');
+                    document.getElementById('info-table').innerHTML = '<tr><th>Planet</th><th>Distance from Sun (AU)</th><th>Speed (m/s)</th></tr>' + tableHtml;
+                });
+        }
+
+        var currentDate = new Date();
+        document.getElementById('date').valueAsDate = currentDate;
+        document.getElementById('time').value = currentDate.toTimeString().substr(0, 5);
+
+        plotOrbits();
+    </script>
+    <div id="information">
+        <h2>About the Solar System</h2>
+        <h3>The Influence of the Sun</h3>
+        <p>The speed of the planets in their orbits is influenced by the gravitational pull of the Sun. The closer a planet is to the Sun, the greater the Sun's gravitational force on it, and the faster the planet moves in its orbit. Conversely, the farther a planet is from the Sun, the weaker the gravitational force, and the slower the planet's speed. This phenomenon is described by Kepler's laws of planetary motion.</p>
+        <h3>When Mars Comes Closest to Earth</h3>
+        <p>Mars comes closest to Earth approximately every 26 months. This event is called "Mars opposition." During opposition, Mars and the Sun are on directly opposite sides of Earth. Depending on the specific details of the orbits, Mars' closest approach to Earth may occur days before or after opposition. The distance at closest approach can vary between 54.6 million kilometers to about 100 million kilometers.</p>
+        <h3>Planetary Positions and Orbits</h3>
+        <p>The planets of the solar system orbit the Sun in elliptical paths, with the Sun at one focus of the ellipse. The shape of the ellipse and the speed of the planet's orbit vary depending on the planet's distance from the Sun and its mass. Understanding the principles of these orbits allows scientists to predict planetary positions and to plan missions to other planets.</p>
+    </div>
+</body>
+
+</html>
+{% endblock %}

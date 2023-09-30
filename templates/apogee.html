@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5px;
+            background-color: white
+            
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Style for the input text boxes */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .results p {
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        .center-image {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate Satellite Apogee and Perigee Heights</h1>
+        <p>Calculates the Apogee and Perigee heights of a satellite based on its eccentricity and semimajor axis.</p>
+        
+        <div class="center-image">
+            <img src="https://i.ibb.co/ZK9ZZHg/Apogee.png" alt="Apogee Image" width="350" height="320">
+        </div>
+
+        <form method="POST">
+            <div>
+                <label for="eccentricity">Enter Eccentricity:</label>
+                <input type="text" id="eccentricity" name="eccentricity" value="{{ eccentricity }}" required>
+            </div>
+            <div>
+                <label for="semimajor_axis">Enter Semimajor Axis (km):</label>
+                <input type="text" id="semimajor_axis" name="semimajor_axis" value="{{ semimajor_axis }}" required>
+            </div>
+            <div>
+                <input type="submit" value="Calculate">
+            </div>
+        </form>
+
+        <div class="results">
+            <h2>Results:</h2>
+            <p>The Apogee height for the given orbital parameters is: {{ ha if ha is not none else '...' }} km</p>
+            <p>The Perigee height for the given orbital parameters is: {{ hp if hp is not none else '...' }} km</p>
+        </div>
+
+        <!-- Explanation of Apogee and Perigee -->
+        <h2>Apogee and Perigee:</h2>
+        <p>Apogee and Perigee are terms used in orbital mechanics to describe specific points in a satellite's orbit around the Earth:</p>
+        <ul>
+            <li><strong>Apogee:</strong> This is the highest point in a satellite's orbit above the Earth's surface. It represents the point where the satellite is farthest from the Earth.</li>
+            <li><strong>Perigee:</strong> This is the lowest point in a satellite's orbit above the Earth's surface. It represents the point where the satellite is closest to the Earth.</li>
+        </ul>
+        <p>These terms are crucial for understanding and analyzing satellite orbits and are often used in satellite mission planning and calculations.</p>
+
+        <h2>Calculation:</h2>
+        <p>The Apogee height (ha) and Perigee height (hp) are calculated using the following equations:</p>
+        <p><strong>ha = Semimajor Axis * (1 + Eccentricity) - Mean Earth's Radius</strong></p>
+        <p><strong>hp = Semimajor Axis * (1 - Eccentricity) - Mean Earth's Radius</strong></p>
+    </div>
+</body>
+</html>
+<br>
+<br>
+{% endblock %}
