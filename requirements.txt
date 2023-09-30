@@ -12,6 +12,7 @@ Python-IO
 pybase64
 geocoder
 flask
+Cartopy==0.18.0
 geos
 shapely
 starplot
