@@ -8,6 +8,7 @@ pytz
 skyfield
 matplotlib
 numpy
+Cython
 Python-IO
 pybase64
 geocoder
