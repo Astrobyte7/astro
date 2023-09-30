@@ -4,7 +4,6 @@ flask
 ephem
 datetime
 pytz
-skyfield
 Python-IO
 pybase64
 geocoder
